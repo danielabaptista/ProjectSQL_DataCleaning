@@ -143,3 +143,6 @@ FROM Project..NashvilleHousing
 
 ALTER TABLE Project..NashvilleHousing
 DROP COLUMN OWnerAddress, TaxDistrict, PropertyAddress
+
+ALTER TABLE Project..NashvilleHousing
+DROP COLUMN SaleDate
