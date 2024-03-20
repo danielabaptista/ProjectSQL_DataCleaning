@@ -56,5 +56,36 @@ ADD PropertySplitCity Nvarchar(255);
 UPDATE NashvilleHousing 
 SET PropertySplitCity = SUBSTRING(PropertyAddress, CHARINDEX(',', PropertyAddress) + 1, LEN(PropertyAddress))
 
+SELECT OwnerAddress
+FROM Project..NashvilleHousing
+
+
+SELECT 
+PARSENAME(REPLACE(OwnerAddress, ',', '.'), 3),
+PARSENAME(REPLACE(OwnerAddress, ',', '.'), 2),
+PARSENAME(REPLACE(OwnerAddress, ',', '.'), 1)
+FROM Project..NashvilleHousing
+
+
+ALTER TABLE NashvilleHousing
+ADD OwnerSplitAddress Nvarchar(255);
+
+UPDATE NashvilleHousing 
+SET OwnerSplitAddress = PARSENAME(REPLACE(OwnerAddress, ',', '.'), 3)
+
+
+ALTER TABLE NashvilleHousing
+ADD OwnerSplitCity Nvarchar(255);
+
+UPDATE NashvilleHousing 
+SET OwnerSplitCity = PARSENAME(REPLACE(OwnerAddress, ',', '.'), 2)
+
+
+ALTER TABLE NashvilleHousing
+ADD OwnerSplitState Nvarchar(255);
+
+UPDATE NashvilleHousing 
+SET OwnerSplitState = PARSENAME(REPLACE(OwnerAddress, ',', '.'), 1)
+
 SELECT *
 FROM Project..NashvilleHousing
